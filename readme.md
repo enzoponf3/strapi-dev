@@ -1,0 +1,1 @@
+This is a strapi example project 
