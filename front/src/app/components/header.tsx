@@ -7,9 +7,9 @@ import UserIcon from "@/public/icons/userIcon";
 import HamIcon from "@/public/icons/hamIcon";
 import CloseIcon from "@/public/icons/closeIcon";
 
-export const Header = () => {
+export const Header = (bento) => {
   const [aside, setAside] = React.useState<boolean>(false);
-
+  const bentoArr = bento.bento;
   return (
     <div className="bg-brand w-full flex items-center justify-between px-6 pb-4 pt-2 relative">
       <div
@@ -28,10 +28,14 @@ export const Header = () => {
           Home
         </a>
         <div className="flex flex-col">
-          <ul className="pt-16 uppercase font-extralight  text-base">
-            <li>RELAX</li>
-            <li>The basics</li>
-            <li>emular </li>
+          <ul className="pt-16 uppercase font-light  text-sm">
+            {bentoArr.map((item) => {
+              return (
+                <li className="py-1" key={item.bento_title}>
+                  {item.bento_title}
+                </li>
+              );
+            })}
           </ul>
 
           <a className="py-4 font-semibold" href="#">
