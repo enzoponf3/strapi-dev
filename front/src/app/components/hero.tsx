@@ -1,19 +1,22 @@
-import { getHomeInfo } from "@/lib/get-home-info"
-import { BlocksRenderer } from "@strapi/blocks-react-renderer"
+import { getHomeInfo } from "@/lib/get-home-info";
+import { metadata } from "../layout";
+import Image from "next/image";
 
 export const Hero = async () => {
-  const { Title, Phone, Email, Description, Address } = await getHomeInfo()
-  console.log(Phone)
+  const { Title, Description, PresentationImg } = await getHomeInfo();
+  metadata.title = Title;
+  metadata.description = Description;
 
   return (
     <>
-      <h1>{Title}</h1>
-      <h3>
-        <BlocksRenderer content={Description} />
-      </h3>
-      <h4>Phone {Phone}</h4>
-      <h4>Email {Email}</h4>
-      <h4>Address {Address}</h4>
+      <div className="w-full h-40 overflow-hidden flex items-center">
+        <Image
+          height={1280}
+          width={1920}
+          src={PresentationImg}
+          alt="hero image"
+        />
+      </div>
     </>
-  )
-}
+  );
+};
