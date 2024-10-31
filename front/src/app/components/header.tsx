@@ -6,10 +6,11 @@ import Logo from "@/public/logo-black.png";
 import UserIcon from "@/public/icons/userIcon";
 import HamIcon from "@/public/icons/hamIcon";
 import CloseIcon from "@/public/icons/closeIcon";
+import { getCategories } from "@/lib/get-categories";
 
-export const Header = (bento) => {
+export const Header = (categories) => {
   const [aside, setAside] = React.useState<boolean>(false);
-  const bentoArr = bento.bento;
+  console.log(categories);
   return (
     <div className="bg-brand w-full flex items-center justify-between px-6 pb-4 pt-2 relative">
       <div
@@ -17,6 +18,7 @@ export const Header = (bento) => {
           (aside ? "translate-x-full " : "-translate-x-full ") +
           "absolute bg-white top-0 h-[100dvh] -left-full w-full transition-transform transform duration-500 opacity-50"
         }
+        onClick={() => setAside(!aside)}
       ></div>
       <aside
         className={
@@ -29,10 +31,10 @@ export const Header = (bento) => {
         </a>
         <div className="flex flex-col">
           <ul className="pt-16 uppercase font-light  text-sm">
-            {bentoArr.map((item) => {
+            {categories.categories.map((category) => {
               return (
-                <li className="py-1" key={item.bento_title}>
-                  {item.bento_title}
+                <li className="py-1" key={category.name}>
+                  {category.name}
                 </li>
               );
             })}
